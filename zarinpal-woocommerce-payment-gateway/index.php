@@ -1,11 +1,20 @@
 <?php
 /*
 Plugin Name: افزونه پرداخت امن زرین‌پال برای ووکامرس
-Version: 4.9.3
-Description:  افزونه درگاه پرداخت امن زرین‌پال برای فروشگاه ساز ووکامرس
-Plugin URI: http://zarinpal.com
-Author: Masoud Amini , alireza yousefi
+Version: 5.0.1
+Description: افزونه درگاه پرداخت امن زرین‌پال برای فروشگاه ساز ووکامرس
+Plugin URI: https://zarinpal.com
+Author: Masoud Amini, Armin Zahedi
 Author URI: http://www.zarinpal.com/
-
+Text Domain: wc-zpal
+Domain Path: /languages
+WC requires at least: 3.0
+WC tested up to: 9.4.1
+Requires at least: 5.8
+Tested up to: 6.7.1
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
+
 include_once("class-wc-gateway-zarinpal.php");
+
