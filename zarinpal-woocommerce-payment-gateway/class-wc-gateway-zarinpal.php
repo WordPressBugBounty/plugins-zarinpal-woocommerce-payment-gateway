@@ -363,7 +363,18 @@ function Load_ZarinPal_Gateway() {
 
                 if ( isset( $_GET['Status'] ) && $_GET['Status'] === 'OK' ) {
                     $authority = sanitize_text_field( $_GET['Authority'] );
-                    $amount    = intval( $order->get_total() );
+                    
+                    $amount = intval( $order->get_total() );
+                    $currency = $order->get_currency();
+                    $currency = strtolower( $currency );
+
+                    if ( $currency === 'irht' ) {
+                        $amount *= 1000;
+                    } elseif ( $currency === 'irhr' ) {
+                        $amount *= 100;
+                    } elseif ( $currency === 'irt' ) {
+                        $amount *= 10;
+                    }
 
                     try {
                         $response = $this->zarinpal->verifyPayment( $authority, $amount );
