@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/ZarinPal.php';
+require_once plugin_dir_path( __FILE__ ) . 'ZarinPal.php';
 
 define( 'WC_ZPAL_TEXT_DOMAIN', 'wc-zpal' );
 
@@ -162,7 +162,7 @@ function Load_ZarinPal_Gateway() {
                             'desc_tip'    => true,
                         ),
                         'access_token'   => array(
-                            'title'       => __( 'توکن دسترسی', WC_ZPAL_TEXT_DOMAIN ),
+                            'title'       => __( 'توکن دسترسی (اختیاری ویژه سرویس استرداد وجه)', WC_ZPAL_TEXT_DOMAIN ),
                             'type'        => 'password',
                             'description' => __( 'توکن دسترسی برای استفاده از API گراف‌کیوال زرین‌پال', WC_ZPAL_TEXT_DOMAIN ),
                             'default'     => '',
@@ -332,7 +332,7 @@ function Load_ZarinPal_Gateway() {
                         $callback_url,
                         $description,
                         $metadata,
-                        $invoices,
+                        $cart_json,
                         $referrer_id,
                     );
 
@@ -521,9 +521,9 @@ function Load_ZarinPal_Gateway() {
             public function admin_notice_missing_accesstoken() {
                 $accesstoken = $this->get_option( 'access_token' );
                 if ( empty( $accesstoken ) && 'yes' === $this->get_option( 'enabled' ) ) {
-                    echo '<div class="notice notice-error is-dismissible">';
-                    echo '<p>' . __( 'توکن دسترسی درگاه زرین‌پال خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN ) . '</p>';
-                    echo '</div>';
+                    // echo '<div class="notice notice-error is-dismissible">';
+                    // echo '<p>' . __( 'توکن دسترسی درگاه زرین‌پال خالی است. لطفاً آن را در تنظیمات درگاه وارد نمایید.', WC_ZPAL_TEXT_DOMAIN ) . '</p>';
+                    // echo '</div>';
                 }
             }
 
