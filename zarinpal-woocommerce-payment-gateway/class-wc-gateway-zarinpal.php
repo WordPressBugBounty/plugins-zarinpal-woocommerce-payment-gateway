@@ -281,6 +281,8 @@ function Load_ZarinPal_Gateway() {
                     $amount *= 1000;
                 } elseif ( $currency === 'irhr' ) {
                     $amount *= 100;
+                } elseif ( $currency === 'irt' ) {
+                    $amount *= 10;
                 }
 
                 $callback_url = add_query_arg( 'wc_order', $order_id, WC()->api_request_url( 'WC_ZPal' ) );
@@ -328,7 +330,7 @@ function Load_ZarinPal_Gateway() {
 
                 try {
                     $authority = $this->zarinpal->requestPayment(
-                        $amount * 10,
+                        $amount,
                         $callback_url,
                         $description,
                         $metadata,
@@ -364,7 +366,7 @@ function Load_ZarinPal_Gateway() {
 
                 if ( isset( $_GET['Status'] ) && $_GET['Status'] === 'OK' ) {
                     $authority = sanitize_text_field( $_GET['Authority'] );
-                    $amount    = intval( $order->get_total() ) * 10;
+                    $amount    = intval( $order->get_total() );
 
                     try {
                         $response = $this->zarinpal->verifyPayment( $authority, $amount );

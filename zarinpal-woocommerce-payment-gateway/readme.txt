@@ -6,7 +6,7 @@ Tags: woocommerce,zarinpal, iran, persian, farsi,woocommerce persian, e-commerce
 Requires at least: 4.5
 Requires PHP: 7.0
 Tested up to: 6.7.1
-Stable tag: 5.0.5
+Stable tag: 5.0.6
 
 پرداخت اینترنتی وجه به وسیله درگاه پرداخت واسطه زرین پال
 
