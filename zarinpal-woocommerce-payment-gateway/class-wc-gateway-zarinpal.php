@@ -231,9 +231,6 @@ function Load_ZarinPal_Gateway() {
 
                 echo $this->trustLogo;
 
-                if ( $this->supports( 'tokenization' ) && is_checkout() ) {
-                    $this->save_payment_method_checkbox();
-                }
             }
 
             public function process_payment( $order_id ) {

@@ -23,18 +23,22 @@ class ZarinPal {
         $this->accessToken  = $accessToken;
     }
 
-    public function requestPayment( $amount, $callbackUrl, $description, $metadata = array(), $invoices = array(), $referrer_id = null ) {
-        $data = array(
-            'merchant_id'  => $this->merchantId,
-            'amount'       => $amount,
-            'callback_url' => $callbackUrl,
-            'description'  => $description,
-            'metadata'     => $metadata,
-            'invoices'     => $invoices,
-            'referrer_id'  => $referrer_id,
-        );
+            public function requestPayment( $amount, $callbackUrl, $description, $metadata = array(), $invoices = array(), $referrer_id = null ) {
+            $data = array(
+                'merchant_id'  => $this->merchantId,
+                'amount'       => $amount,
+                'callback_url' => $callbackUrl,
+                'description'  => $description,
+                'metadata'     => $metadata,
+                'invoices'     => $invoices,
+                'referrer_id'  => $referrer_id,
+            );
 
-        $response = $this->sendRequest( 'request.json', $data );
+
+            $data = $this->recursive_array_filter($data);
+
+
+            $response = $this->sendRequest( 'request.json', $data );
 
         if ( isset( $response['data']['code'] ) && $response['data']['code'] == 100 ) {
             return $response['data']['authority'];
@@ -268,5 +272,21 @@ class ZarinPal {
         $result        = json_decode( $response_body, true );
 
         return $result;
+    }
+
+    private function recursive_array_filter($array) {
+        foreach ($array as $key => &$value) {
+            if (is_array($value)) {
+                $value = $this->recursive_array_filter($value);
+                if (empty($value)) {
+                    unset($array[$key]);
+                }
+            } else {
+                if (is_null($value) || $value === '') {
+                    unset($array[$key]);
+                }
+            }
+        }
+        return $array;
     }
 }
