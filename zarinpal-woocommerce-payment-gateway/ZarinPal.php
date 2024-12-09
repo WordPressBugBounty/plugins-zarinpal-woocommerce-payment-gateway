@@ -14,11 +14,11 @@ class ZarinPal {
         $this->sandbox      = $sandbox;
         $this->baseUrl      = $sandbox
             ? 'https://sandbox.zarinpal.com/pg/v4/payment/'
-            : 'https://api.zarinpal.com/pg/v4/payment/';
+            : 'https://payment.zarinpal.com/pg/v4/payment/';
         $this->redirectUrl  = $sandbox
             ? 'https://sandbox.zarinpal.com/pg/StartPay/'
-            : 'https://www.zarinpal.com/pg/StartPay/';
-        $this->userAgent    = 'ZarinPalSdk/v1 WooCommerce Plugin/v.5.0.0 (WooCommerce ' . WC()->version . '; WordPress ' . get_bloginfo( 'version' ) . '; PHP ' . PHP_VERSION . ')';
+            : 'https://payment.zarinpal.com/pg/StartPay/';
+        $this->userAgent = 'ZarinPalSdk/v1 WooCommerce Plugin/v.5.0.10' . ' (WooCommerce ' . WC()->version . '; WordPress ' . get_bloginfo( 'version' ) . '; PHP ' . PHP_VERSION . ')';
         $this->graphqlUrl   = 'https://next.zarinpal.com/api/v4/graphql';
         $this->accessToken  = $accessToken;
     }

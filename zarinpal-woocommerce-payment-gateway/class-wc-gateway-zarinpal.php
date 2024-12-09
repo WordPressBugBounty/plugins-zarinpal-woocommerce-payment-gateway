@@ -236,14 +236,6 @@ function Load_ZarinPal_Gateway() {
             public function process_payment( $order_id ) {
                 $order = wc_get_order( $order_id );
 
-                if ( isset( $_POST['wc-' . $this->id . '-new-payment-method'] ) && 'true' === $_POST['wc-' . $this->id . '-new-payment-method'] ) {
-                    $token = $this->zarinpal->createToken( /* پارامترهای لازم */ );
-                    if ( $token ) {
-                        $order->add_meta_data( '_zarinpal_payment_token', $token, true );
-                        $order->save();
-                    }
-                }
-
                 return array(
                     'result'   => 'success',
                     'redirect' => $order->get_checkout_payment_url( true ),
@@ -386,7 +378,7 @@ function Load_ZarinPal_Gateway() {
 
                             wc_add_notice( str_replace( '{transaction_id}', $transaction_id, $this->successMessage ), 'success' );
 
-                            $order->update_status( 'processing' );
+                            // $order->update_status( 'processing' );
 
                             $woocommerce->cart->empty_cart();
 
@@ -396,13 +388,13 @@ function Load_ZarinPal_Gateway() {
                             throw new Exception( 'تراکنش ناموفق بود.' );
                         }
                     } catch ( Exception $e ) {
-                        $order->update_status( 'failed' );
+                        // $order->update_status( 'failed' );
                         wc_add_notice( str_replace( '{fault}', $e->getMessage(), $this->failedMessage ), 'error' );
                         wp_redirect( wc_get_checkout_url() );
                         exit;
                     }
                 } else {
-                    $order->update_status( 'failed' );
+                    // $order->update_status( 'failed' );
                     wc_add_notice( str_replace( '{fault}', 'تراکنش توسط کاربر لغو شد.', $this->failedMessage ), 'error' );
                     wp_redirect( wc_get_checkout_url() );
                     exit;

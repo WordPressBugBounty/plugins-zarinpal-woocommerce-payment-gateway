@@ -2,11 +2,11 @@
 author: Masoud Amini , Armin Zahedi
 author URI: http://www.zarinpal.com/
 Contributors: Amini7,ar4min
-Tags: woocommerce,zarinpal, iran, persian, farsi,woocommerce persian, e-commerce, ووکامرس, ووکامرس فارسی,zarinpal woocommerce,بانک زرین پال,درگاه پرداخت,payment gateway,woocommerce payment
+Tags: zarinpal,woocommerce,زرین پال,ووکامرس,درگاه
 Requires at least: 4.5
 Requires PHP: 7.0
 Tested up to: 6.7.1
-Stable tag: 5.0.8
+Stable tag: 5.0.10
 
 پرداخت اینترنتی وجه به وسیله درگاه پرداخت واسطه زرین پال
 
