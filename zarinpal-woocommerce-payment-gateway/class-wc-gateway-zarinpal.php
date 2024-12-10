@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'ZarinPal.php';
+require_once plugin_dir_path( __FILE__ ) . 'ZarinpalPaymentGateway.php';
 
 define( 'WC_ZPAL_TEXT_DOMAIN', 'wc-zpal' );
 
@@ -99,7 +99,7 @@ function Load_ZarinPal_Gateway() {
                 $this->accessToken       = $this->sanitize_access_token( $this->get_option( 'access_token' ) );
                 $this->order_button_text = __( 'پرداخت با زرین‌پال', WC_ZPAL_TEXT_DOMAIN );
 
-                $this->zarinpal = new ZarinPal( $this->merchantCode, $this->sandbox, $this->accessToken );
+                $this->zarinpal = new ZarinpalPaymentGateway( $this->merchantCode, $this->sandbox, $this->accessToken );
 
                 add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
                 add_action( 'woocommerce_receipt_' . $this->id, array( $this, 'Send_to_ZarinPal_Gateway' ) );
@@ -267,9 +267,9 @@ function Load_ZarinPal_Gateway() {
                 $currency = strtolower( $currency );
 
                 if ( $currency === 'irht' ) {
-                    $amount *= 1000;
+                    $amount *= 10000;
                 } elseif ( $currency === 'irhr' ) {
-                    $amount *= 100;
+                    $amount *= 1000;
                 } elseif ( $currency === 'irt' ) {
                     $amount *= 10;
                 }
@@ -361,9 +361,9 @@ function Load_ZarinPal_Gateway() {
                     $currency = strtolower( $currency );
 
                     if ( $currency === 'irht' ) {
-                        $amount *= 1000;
+                        $amount *= 10000;
                     } elseif ( $currency === 'irhr' ) {
-                        $amount *= 100;
+                        $amount *= 1000;
                     } elseif ( $currency === 'irt' ) {
                         $amount *= 10;
                     }
@@ -621,7 +621,7 @@ function zpal_display_transaction_info() {
         exit;
     }
 
-    $zarinpal = new ZarinPal( $merchantCode, $sandbox, $accessToken );
+    $zarinpal = new ZarinpalPaymentGateway( $merchantCode, $sandbox, $accessToken );
 
     try {
         $authority = $order->get_meta( '_zarinpal_authority' );
