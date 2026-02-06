@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: افزونه پرداخت امن زرین‌پال برای ووکامرس
-Version: 5.0.16
+Version: 5.0.17
 Description: افزونه درگاه پرداخت امن زرین‌پال برای فروشگاه ساز ووکامرس
 Plugin URI: https://zarinpal.com
 Author: Masoud Amini, Armin Zahedi
@@ -9,7 +9,7 @@ Author URI: http://www.zarinpal.com/
 Text Domain: wc-zpal
 Domain Path: /languages
 WC requires at least: 3.0
-WC tested up to: 9.4.1
+WC tested up to: 9.5
 Requires at least: 5.8
 Tested up to: 6.7.1
 License: GPLv3 or later

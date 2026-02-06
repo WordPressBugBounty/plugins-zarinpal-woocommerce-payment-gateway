@@ -6,7 +6,7 @@ Tags: zarinpal,woocommerce,زرین پال,ووکامرس,درگاه
 Requires at least: 4.5
 Requires PHP: 7.0
 Tested up to: 6.7.1
-Stable tag: 5.0.16
+Stable tag: 5.0.17
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -32,6 +32,10 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 3. تنظیمات افزونه را می توانید از طریق قسمت تنظیمات ووکامرس / تسویه حساب انجام دهید
 
 == Changelog ==
+= 5.0.17 =
+* بهبود امنیت در فرآیند بازگشت از درگاه پرداخت
+* بهبود پایداری در پردازش تراکنش‌ها
+
 = 5.0.16 =
 * افزودن ویژگی کسر کارمزد از خریدار
 * انتخاب کسر کارمزد از پذیرنده یا خریدار در تنظیمات

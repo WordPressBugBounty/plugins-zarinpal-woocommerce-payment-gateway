@@ -356,7 +356,15 @@ function Load_ZarinPal_Gateway() {
                         $cart_json,
                         $referrer_id
                     );
+
                     $order->update_meta_data('_zarinpal_authority', $authority);
+                    $authority_history = $order->get_meta('_zarinpal_authority_history');
+                    if (!is_array($authority_history)) {
+                        $authority_history = array();
+                    }
+                    $authority_history[] = $authority;
+                    $order->update_meta_data('_zarinpal_authority_history', $authority_history);
+
                     $order->save();
                     $note = sprintf(__('کاربر به درگاه پرداخت هدایت شد. شناسه تراکنش: %s', WC_ZPAL_TEXT_DOMAIN), $authority);
                     $order->add_order_note($note);
@@ -376,9 +384,33 @@ function Load_ZarinPal_Gateway() {
                     wp_redirect(wc_get_checkout_url());
                     exit;
                 }
+
+                if ($order->is_paid()) {
+                    wp_redirect($this->get_return_url($order));
+                    exit;
+                }
+
                 if (isset($_GET['Status']) && $_GET['Status'] === 'OK') {
                     $authority = sanitize_text_field($_GET['Authority']);
-                    
+                    $stored_authority = $order->get_meta('_zarinpal_authority');
+                    $authority_history = $order->get_meta('_zarinpal_authority_history');
+                    $is_valid_authority = false;
+
+                    if (!empty($stored_authority) && $authority === $stored_authority) {
+                        $is_valid_authority = true;
+                    }
+
+                    if (!$is_valid_authority && is_array($authority_history) && in_array($authority, $authority_history, true)) {
+                        $is_valid_authority = true;
+                    }
+
+                    if (!$is_valid_authority) {
+                        $order->add_order_note(__('تلاش برای پرداخت با توکن نامعتبر. توکن ارسالی با توکن سفارش مطابقت ندارد.', WC_ZPAL_TEXT_DOMAIN));
+                        wc_add_notice(__('توکن پرداخت نامعتبر است. لطفاً مجدداً تلاش کنید.', WC_ZPAL_TEXT_DOMAIN), 'error');
+                        wp_redirect(wc_get_checkout_url());
+                        exit;
+                    }
+
                     $order_total = $order->get_total();
                     $amount = intval($order_total);
                     $currency = $order->get_currency();
