@@ -30,7 +30,7 @@ final class WC_Zarinpal_Gateway_Blocks_Support extends AbstractPaymentMethodType
                 'wp-html-entities',
                 'wp-i18n',
             ),
-            null,
+            '5.1.0',
             true
         );
 

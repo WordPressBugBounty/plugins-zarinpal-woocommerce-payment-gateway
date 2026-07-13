@@ -44,7 +44,7 @@ class ZarinPal {
             return $response['data']['authority'];
         } else {
             $errorMessage = $response['errors']['message'] ?? 'خطای ناشناخته';
-            throw new Exception( $errorMessage );
+            throw new Exception( esc_html( $errorMessage ) );
         }
     }
 
@@ -61,7 +61,7 @@ class ZarinPal {
             return $response['data'];
         } else {
             $errorMessage = $response['errors']['message'] ?? 'خطای ناشناخته';
-            throw new Exception( $errorMessage );
+            throw new Exception( esc_html( $errorMessage ) );
         }
     }
 
@@ -106,7 +106,7 @@ class ZarinPal {
             return $response['data']['resource'];
         } else {
             $errorMessage = $response['errors'][0]['message'] ?? 'خطای ناشناخته';
-            throw new Exception( $errorMessage );
+            throw new Exception( esc_html( $errorMessage ) );
         }
     }
 
@@ -168,7 +168,7 @@ class ZarinPal {
         return $response['data']['Session'];
     } else {
         $errorMessage = $response['errors'][0]['message'] ?? 'خطای ناشناخته';
-        throw new Exception( $errorMessage );
+        throw new Exception( esc_html( $errorMessage ) );
     }
 }
 
@@ -183,7 +183,7 @@ class ZarinPal {
             return $response['data']['authorities'];
         } else {
             $errorMessage = $response['errors']['message'] ?? 'خطای ناشناخته';
-            throw new Exception( $errorMessage );
+            throw new Exception( esc_html( $errorMessage ) );
         }
     }
 
@@ -199,7 +199,7 @@ class ZarinPal {
             return true;
         } else {
             $errorMessage = $response['errors']['message'] ?? 'خطای ناشناخته';
-            throw new Exception( $errorMessage );
+            throw new Exception( esc_html( $errorMessage ) );
         }
     }
 
@@ -215,7 +215,7 @@ class ZarinPal {
             return $response['data'];
         } else {
             $errorMessage = $response['errors']['message'] ?? 'خطای ناشناخته';
-            throw new Exception( $errorMessage );
+            throw new Exception( esc_html( $errorMessage ) );
         }
     }
 
@@ -236,14 +236,14 @@ class ZarinPal {
         $response = wp_remote_post( $url, $args );
 
         if ( is_wp_error( $response ) ) {
-            throw new Exception( 'خطا در ارتباط با سرور: ' . $response->get_error_message() );
+            throw new Exception( 'خطا در ارتباط با سرور: ' . esc_html($response->get_error_message()) );
         }
 
         $response_body = wp_remote_retrieve_body( $response );
         $result        = json_decode( $response_body, true );
 
         if ( isset( $result['errors'] ) ) {
-            throw new Exception( $result['errors'][0]['message'] );
+            throw new Exception( esc_html( $result['errors'][0]['message'] ) );
         }
 
         return $result;
@@ -265,7 +265,7 @@ class ZarinPal {
         $response = wp_remote_post( $url, $args );
 
         if ( is_wp_error( $response ) ) {
-            throw new Exception( 'خطا در ارتباط با سرور: ' . $response->get_error_message() );
+            throw new Exception( 'خطا در ارتباط با سرور: ' . esc_html($response->get_error_message()) );
         }
 
         $response_body = wp_remote_retrieve_body( $response );

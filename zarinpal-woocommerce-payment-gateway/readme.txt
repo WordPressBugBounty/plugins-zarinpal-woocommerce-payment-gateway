@@ -1,37 +1,41 @@
-=== Zarinpal Gateway ===
+=== افزونه پرداخت امن زرین‌پال برای ووکامرس (ZarinPal for WooCommerce) ===
 author: Masoud Amini , Armin Zahedi
 author URI: http://www.zarinpal.com/
 Contributors: Amini7,ar4min
-Tags: zarinpal,woocommerce,زرین پال,ووکامرس,درگاه
-Requires at least: 4.5
+Tags: zarinpal, woocommerce, payment gateway, زرین‌پال, درگاه پرداخت
+Requires at least: 5.8
 Requires PHP: 7.0
-Tested up to: 6.7.1
-Stable tag: 5.0.17
+Tested up to: 7.0
+Stable tag: 5.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-پرداخت اینترنتی وجه به وسیله درگاه پرداخت واسطه زرین پال
+Accept online payments through the ZarinPal payment gateway, the leading Iranian payment service provider, directly in WooCommerce.
 
 == Description ==
-** Zarinpal Gateway** این افزونه شما را قادر می سازد تا براحتی اقدام به ایجاد درگاه پرداخت اینترنتی زرین پال برای پرداخت های محصولات ووکامرس کنید
+**ZarinPal Payment Gateway for WooCommerce** lets you easily set up the ZarinPal online payment gateway to accept payments for your WooCommerce store.
 
-= امکانات =
- * اضافه شدن خودکار واحد های پولی ریال تومن هزار ریال و هزار تومان به ووکامرس
- * سازگار با ووکامرس 2.6 و قدیمی تر
- * پنل تنظیمات ساده و کاربرپسند
- * تنظیم پیام دلخواه در هنگام پرداخت موفقیت آمیز ، انصراف از پرداخت و یا لغو پرداخت
- * قابلیت نمایش کد رهگیری زرین پال همراه با کد میانبر
- * نمایش خطاهای درگاه پرداخت
-
-
-
+= Features =
+ * Automatically adds the Iranian Rial, Toman, thousand-Rial, and thousand-Toman currencies to WooCommerce
+ * Simple, user-friendly settings panel
+ * Customizable messages for successful, cancelled, or failed payments
+ * Displays the ZarinPal tracking code via a shortcode
+ * Displays payment gateway errors
+ * Optional sandbox (test) mode
+ * Transaction refund support
+ * Transaction detail lookup from the order screen
+ * Choose whether the gateway fee is paid by the merchant or the customer
 
 == Installation ==
-1. پوشه `zarinpal-woocommerce` را در مسیر `/wp-content/plugins/` آپلود کنید
-2. افزونه را از طریق منوی 'افزونه ها' در وردپرس فعال کنید
-3. تنظیمات افزونه را می توانید از طریق قسمت تنظیمات ووکامرس / تسویه حساب انجام دهید
+1. Upload the `zarinpal-woocommerce-payment-gateway` folder to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Configure the plugin under WooCommerce Settings / Payments
 
 == Changelog ==
+= 5.1.0 =
+* Security: fixed a CSRF vulnerability in the manual transaction re-verification and transaction detail lookup admin actions
+* Coding standards and security hardening pass (safe redirects, input sanitization, output escaping, translation domain)
+
 = 5.0.17 =
 * بهبود امنیت در فرآیند بازگشت از درگاه پرداخت
 * بهبود پایداری در پردازش تراکنش‌ها
