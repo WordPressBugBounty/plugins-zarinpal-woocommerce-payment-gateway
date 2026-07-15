@@ -185,7 +185,6 @@ jQuery(document).ready(function($) {
                     ajaxUrl = possiblePaths[0];
                 }
             }
-            nonce = 'zarinpal_checkout_nonce';
         }
         
                 $.post(ajaxUrl, {

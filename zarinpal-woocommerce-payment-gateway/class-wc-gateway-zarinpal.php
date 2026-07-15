@@ -1062,16 +1062,8 @@ add_action('wp_ajax_nopriv_zarinpal_update_payment_method', 'zarinpal_update_pay
 
 function zarinpal_update_payment_method() {
     $payment_method = isset($_POST['payment_method']) ? sanitize_text_field(wp_unslash($_POST['payment_method'])) : '';
-    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-    
-    $nonce_valid = false;
-    if (check_ajax_referer('update_order_review', 'nonce', false)) {
-        $nonce_valid = true;
-    } elseif ($nonce === 'zarinpal_checkout_nonce') {
-        $nonce_valid = true;
-    }
-    
-    if (!$nonce_valid) {
+
+    if (!check_ajax_referer('update_order_review', 'nonce', false)) {
         wp_send_json_error(array('message' => 'Security check failed'));
         return;
     }

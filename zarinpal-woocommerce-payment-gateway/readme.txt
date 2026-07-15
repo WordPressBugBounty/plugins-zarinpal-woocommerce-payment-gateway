@@ -6,7 +6,7 @@ Tags: zarinpal, woocommerce, payment gateway, زرین‌پال, درگاه پر
 Requires at least: 5.8
 Requires PHP: 7.0
 Tested up to: 7.0
-Stable tag: 5.1.0
+Stable tag: 5.1.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
@@ -32,6 +32,9 @@ Accept online payments through the ZarinPal payment gateway, the leading Iranian
 3. Configure the plugin under WooCommerce Settings / Payments
 
 == Changelog ==
+= 5.1.1 =
+* Security: removed a hardcoded nonce bypass in the checkout payment-method-switch AJAX handler that allowed an unauthenticated request to skip nonce verification entirely
+
 = 5.1.0 =
 * Security: fixed a CSRF vulnerability in the manual transaction re-verification and transaction detail lookup admin actions
 * Coding standards and security hardening pass (safe redirects, input sanitization, output escaping, translation domain)
